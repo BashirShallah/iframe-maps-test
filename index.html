@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3Now - Iframe test</title>
+</head>
+<body>
+
+<h1>3Now - Iframe test:</h1>
+
+<h2>Selected Point:</h2>
+
+<div id="selected-point"></div>
+
+<iframe src="http://localhost:8000/map-iframe.html" style="width: 100%;height: 800px;"></iframe>
+
+</body>
+
+<script>
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+    // Listen to message from child window
+    eventer(messageEvent,function(e) {
+        var key = e.message ? "message" : "data";
+        var data = e[key];
+
+        var elem = document.querySelector('#selected-point');
+        elem.innerHTML = JSON.stringify(data);
+
+    },false);
+</script>
+
+</html>
