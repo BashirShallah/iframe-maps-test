@@ -24,7 +24,7 @@ function initMap() {
         );
         infoWindow.open(map);
 
-        window.parent.postMessage(mapsMouseEvent.latLng.toJSON());
+        window.parent.postMessage(mapsMouseEvent.latLng.toJSON(), 'http://iframe.3now.sy');
 
     });
 }
